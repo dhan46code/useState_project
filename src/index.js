@@ -1,17 +1,23 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React, { useState } from 'react';
+import ReactDom from 'react-dom';
+import data from './data';
+import ListImage from './ListImage';
+import './style.css';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+function Main() {
+  const [image, setImage] = useState(data);
+  console.log(data);
+  return (
+    <>
+      <main>
+        <section className='container'>
+          <h3>{image.length} picture from pexels</h3>
+          <ListImage img={image} />
+          <button onClick={() => setImage([])}>clear all picture</button>
+        </section>
+      </main>
+    </>
+  );
+}
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+ReactDom.render(<Main />, document.getElementById('root'));
